@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Login & Signup</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@
             background-color: #f4f4f4;
             margin: 0;
         }
-        .login-container {
+        .container {
             background: white;
             padding: 20px;
             border-radius: 8px;
@@ -38,9 +38,16 @@
             width: 100%;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 10px;
         }
         button:hover {
             background-color: #218838;
+        }
+        .toggle-btn {
+            background-color: #007bff;
+        }
+        .toggle-btn:hover {
+            background-color: #0056b3;
         }
         .error {
             color: red;
@@ -51,29 +58,57 @@
 </head>
 <body>
 
-<div class="login-container">
-    <h2>Login</h2>
+<div class="container">
+    <h2 id="form-title">Login</h2>
     <p class="error" id="error-message"></p>
     <input type="text" id="username" placeholder="Username" required>
     <input type="password" id="password" placeholder="Password" required>
-    <button id="login-btn">Login</button>
+    <button id="action-btn">Login</button>
+    <button class="toggle-btn" id="toggle-btn">Go to Signup</button>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("login-btn").addEventListener("click", function() {
-            var correctUsername = "admin";
-            var correctPassword = "1234";
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-            var errorMessage = document.getElementById("error-message");
+    let isLogin = true; // Track whether we are in login or signup mode
 
-            if (username === correctUsername && password === correctPassword) {
+    document.getElementById("toggle-btn").addEventListener("click", function() {
+        isLogin = !isLogin;
+        document.getElementById("form-title").textContent = isLogin ? "Login" : "Signup";
+        document.getElementById("action-btn").textContent = isLogin ? "Login" : "Signup";
+        document.getElementById("toggle-btn").textContent = isLogin ? "Go to Signup" : "Go to Login";
+        document.getElementById("error-message").textContent = "";
+    });
+
+    document.getElementById("action-btn").addEventListener("click", function() {
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        let errorMessage = document.getElementById("error-message");
+
+        if (username.trim() === "" || password.trim() === "") {
+            errorMessage.textContent = "Username and password cannot be empty!";
+            return;
+        }
+
+        if (isLogin) {
+            // Login logic
+            let storedUsername = localStorage.getItem("username");
+            let storedPassword = localStorage.getItem("password");
+
+            if (username === storedUsername && password === storedPassword) {
                 window.location.href = "https://zeke-youtube.github.io/zeke-web/zeke%20pikachu";
             } else {
                 errorMessage.textContent = "Invalid username or password!";
             }
-        });
+        } else {
+            // Signup logic
+            localStorage.setItem("username", username);
+            localStorage.setItem("password", password);
+            alert("Signup successful! Now log in.");
+            isLogin = true;
+            document.getElementById("form-title").textContent = "Login";
+            document.getElementById("action-btn").textContent = "Login";
+            document.getElementById("toggle-btn").textContent = "Go to Signup";
+            errorMessage.textContent = "";
+        }
     });
 </script>
 
