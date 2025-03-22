@@ -12,6 +12,7 @@
             align-items: center;
             height: 100vh;
             background-color: #f4f4f4;
+            margin: 0;
         }
         .login-container {
             background: white;
@@ -19,12 +20,13 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            width: 300px;
         }
         input {
             display: block;
-            width: 100%;
+            width: 90%;
             padding: 10px;
-            margin: 10px 0;
+            margin: 10px auto;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
@@ -42,6 +44,8 @@
         }
         .error {
             color: red;
+            font-size: 14px;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -52,27 +56,25 @@
     <p class="error" id="error-message"></p>
     <input type="text" id="username" placeholder="Username" required>
     <input type="password" id="password" placeholder="Password" required>
-    <button onclick="login()">Login</button>
+    <button id="login-btn">Login</button>
 </div>
 
 <script>
-    function login() {
-        // Define your username and password
-        var correctUsername = "admin";
-        var correctPassword = "1234";
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("login-btn").addEventListener("click", function() {
+            var correctUsername = "admin";
+            var correctPassword = "1234";
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var errorMessage = document.getElementById("error-message");
 
-        // Get user input
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-        var errorMessage = document.getElementById("error-message");
-
-        // Validate login
-        if (username === correctUsername && password === correctPassword) {
-            window.location.href = "https://zeke-youtube.github.io/zeke-web/zeke%20pikachu";
-        } else {
-            errorMessage.textContent = "Invalid username or password!";
-        }
-    }
+            if (username === correctUsername && password === correctPassword) {
+                window.location.href = "https://zeke-youtube.github.io/zeke-web/zeke%20pikachu";
+            } else {
+                errorMessage.textContent = "Invalid username or password!";
+            }
+        });
+    });
 </script>
 
 </body>
