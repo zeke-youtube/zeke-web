@@ -8,8 +8,10 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: left;  /* Align all content to the left */
-            padding-left: 20px;
+            text-align: left;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
             transition: background 0.3s, color 0.3s;
         }
         .dark-mode {
@@ -20,7 +22,17 @@
             padding: 10px 15px;
             font-size: 16px;
             cursor: pointer;
-            margin: 10px;
+            margin: 10px 0;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 300px;
+        }
+        input {
+            padding: 5px;
+            width: 100%;
         }
     </style>
 </head>
@@ -29,23 +41,29 @@
     <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
     <h1>Zeke Website!!!!!</h1>
-    <h1>Pikachu :)</h1>
-    <img src="Pikachu.png">
+    <h2>Pikachu :)</h2>
+    <img src="Pikachu.png" alt="Pikachu Image">
 
-    <h1>Links</h1>
+    <h2>Links</h2>
     <p>
         <a href="https://www.youtube.com/channel/UCCPErp7u9h7gXndJMahqQAw">Zeke YouTube</a> | 
         <a href="https://discord.gg/xEVKsRvTsb">Zeke Discord</a>
     </p>
 
-    <h1>Questions</h1>
+    <h2>Questions</h2>
     <p>Please answer the following questions:</p>
-    <label>What is your name?</label> <input type="text">
-    <label>When were you born?</label> <input type="date">
+    <div class="input-container">
+        <label>What is your name?</label> 
+        <input type="text">
+        
+        <label>When were you born?</label> 
+        <input type="date">
+    </div>
 
-    <h1>Zeke Free MC (Google made it unfair)</h1>
+    <h2>Zeke Free MC (Google made it unfair)</h2>
     
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/-x5wBJOnasw?si=LRTFj81WNVFYkfzr" 
+    <iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/-x5wBJOnasw?si=LRTFj81WNVFYkfzr" 
         title="ilikeyoutube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
         gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
     </iframe>
